@@ -1,4 +1,3 @@
-# 제목, 작성자, 날짜, 링크 뽑아오기
 from urllib.request import urlopen
 from bs4 import BeautifulSoup as bs
 import requests as r
@@ -6,13 +5,13 @@ import re
 
 
 w = r.get("http://cms.pknu.ac.kr/pkuocean/view.do?no=1253")
+
 l = 'http://cms.pknu.ac.kr'
 w_list = bs(w.content, "html.parser")
-u = w_list.select(
-    'li > a'
-)
+u = w_list.select('li > a')
 w2_list = w_list.find('ul', {'id' : 'board_list'})
 lis = w2_list.find_all("li")
+
 
 
 for li in lis:
@@ -26,7 +25,14 @@ for li in lis:
     print(span1.text)
     span2= a_tag.find("span",{'class' : 'writer'})
     print(span2.text)
-    urls= li.find("a")
-    print(l + urls.get('href')) 
-    print('----------------------------------------------------------------')
+    urls=li.find("a")
+    urls=l + urls.get('href')
+    
+    desc = r.get(urls)
+    soup = bs(desc.content, 'html.parser')
+    #print(soup.find('a'))
+    lis2 = soup.find('div', {'class' : 'board_stance'})
+    desc = lis2.text
+    print(desc)
 
+print('----------------------------------------------------------------------------')
