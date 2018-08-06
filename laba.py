@@ -16,7 +16,7 @@ conn = pymysql.connect(host='localhost',
 # finally:
 #     conn.close()
 
-#create tables
+#create tables.
 
 try:
     with conn.cursor() as cursor:
