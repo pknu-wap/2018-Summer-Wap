@@ -7,7 +7,6 @@ conn = pymysql.connect(host='localhost',
                        charset='utf8mb4',
                        cursorclass=pymysql.cursors.DictCursor)
 
-
 ## create database
 # try:
 #     with conn.cursor() as cursor:
@@ -18,6 +17,7 @@ conn = pymysql.connect(host='localhost',
 #     conn.close()
 
 #create tables
+
 try:
     with conn.cursor() as cursor:
         sql = '''
