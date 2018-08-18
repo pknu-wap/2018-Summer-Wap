@@ -3,12 +3,15 @@ import requests as r
 import re
 import pymysql
 
+
 # conn = pymysql.connect(host='localhost',
 #                        user='root',
 #                        password='unggung9236',
 #                        db='WAP',
 #                        charset='utf8mb4',
 #                        cursorclass=pymysql.cursors.DictCursor)
+
+
 for i in range(8, 0, -1):
     w = r.get("http://cms.pknu.ac.kr/pkuocean/view.do?no=1253&pageIndex=%d&view=list&sv=TITLE&sw=" % i)
     l = 'http://cms.pknu.ac.kr'
@@ -18,7 +21,6 @@ w2_list = w_list.find('ul', {'id': 'board_list'})
 lis = w2_list.find_all("li")
 lis.reverse()
 
-print(lis)
 
 for li in lis:
     a_tag = li.find("a")
@@ -53,4 +55,4 @@ de = desc0
 #
 # except Exception as e:
 #     print(e)
-conn.close()
+# conn.close()

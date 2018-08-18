@@ -3,16 +3,16 @@ from bs4 import BeautifulSoup as bs
 import requests
 import threading
 import time
+ce = requests.get("http://ce.pknu.ac.kr/05_community/01_community.php").text
 
-class AsyncTask:
+ce_table = bs(ce, "html.parser")
+urls = []
+
+class Gohwak:
     def __init__(self):
         pass
 
-    def TaskA(self):
-        ce = requests.get("http://ce.pknu.ac.kr/05_community/01_community.php").text
-
-        ce_table = bs(ce, "html.parser")
-        urls = []
+    def Ce(self):
 
         for link in ce_table.find_all(name="td", attrs={"class": "txt-l"}):
             urls.append(link.find('a')['href'])
@@ -40,16 +40,17 @@ class AsyncTask:
                 # print(contents)
             print('--------------------------------------------------------------------------------')
 
-        threading.Timer(10,self.TaskA).start()
+        threading.Timer(10,self.Ce).start()
 
-    def TaskB(self):
-        print ('Process B')
-        threading.Timer(3, self.TaskB).start()
+    def Check(self):
+        print ('Update fin')
+        threading.Timer(10, self.Check).start()
 
 def main():
-    print ('Async Function')
-    at = AsyncTask()
-    at.TaskA()
+    print ('Go Hwak')
+    gh = Gohwak()
+    gh.Ce()
+    gh.Check()
 
 if __name__ == '__main__':
     main()
