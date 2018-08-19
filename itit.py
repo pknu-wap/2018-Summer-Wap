@@ -10,7 +10,7 @@ conn = pymysql.connect(host='localhost',
                        charset='utf8mb4',
                        cursorclass=pymysql.cursors.DictCursor)
 
-cms = requests.get("http://cms.pknu.ac.kr/pkuocean/view.do?no=1253&pageIndex=1&view=list&sv=TITLE&sw=").text
+cms = requests.get("http://cms.pknu.ac.kr/itcae/view.do?no=9576").text
 
 cms_table = bs(cms,"html.parser")
 urls = []
@@ -34,8 +34,8 @@ for url in urls:
         namedate = link.find_all('strong')
 
         title = (titlescrap.text)
-        date = (namedate[0].text)
-        writer = (namedate[1].text)
+        writer = (namedate[0].text)
+        date = (namedate[1].text)
 
         # print(date,'     ',title,'     ',writer)
 
@@ -52,15 +52,9 @@ for url in urls:
 
     try:
         with conn.cursor() as cursor:
-            sql = 'INSERT INTO cmscroll (title, created, writer, url, content) VALUES ("%s", "%s","%s", "%s", "%s")' %(title, date, writer, urrl, contents)
+            sql = 'INSERT INTO itcroll (title, created, writer, url, content) VALUES ("%s", "%s","%s", "%s", "%s")' %(title, date, writer, urrl, contents)
             cursor.execute(sql)
         conn.commit()
     except:
         continue
 conn.close()
-
-
-
-
-
-
