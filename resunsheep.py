@@ -58,9 +58,3 @@ for url in urls:
     except:
         continue
 conn.close()
-
-
-
-
-
-
