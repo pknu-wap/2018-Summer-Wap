@@ -1,5 +1,6 @@
 import requests as r
 from bs4 import BeautifulSoup as bs
+import json
 
 def get_info(i):
     po = {'p_pageno' : i}
@@ -8,15 +9,19 @@ def get_info(i):
     sel = soup.find('tbody')
     info = []
 
-    titles = [i.text.strip() for i in sel.find_all('a')]
-    authors = [i.text.strip() for i in sel.find_all('td', {'class' : 'author'})]
-    dates = [i.text.strip() for i in sel.find_all('td', {'class' : 'date'})]
     urls = [i['href'] for i in sel.find_all('a')]
 
-    for i in range(len(titles)):
-        info.append([[titles[i],authors[i],dates[i],'http://www.pknu.ac.kr'+urls[i]]])
+    for i in urls:
+        get_title = r.get('http://pknu.ac.kr'+i)
+        print('http://pknu.ac.kr' + i)
+        soup = bs(get_title.content, 'html.parser')
+        raw_info = soup.find_all('td')
+        info = {'title' : raw_info[0].text,
+                'date' : raw_info[1].text,
+                'author' : raw_info[2].text,
+                'url' : "http://pknu.ac.kr"+i}
 
-    print(info)
+        print(json.dumps(info, indent=2, ensure_ascii = False))
 
-for i in range(1,200):
+for i in range(1,591):
     get_info(i)
