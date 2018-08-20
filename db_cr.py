@@ -21,7 +21,11 @@ def get_info(i):
                 'author' : raw_info[2].text,
                 'url' : "http://pknu.ac.kr"+i}
 
-        print(json.dumps(info, indent=2, ensure_ascii = False))
+        return json.dumps(info, indent=2, ensure_ascii = False)
 
-for i in range(1,591):
-    get_info(i)
+def call_from_bot(i):
+    return get_info(i)
+
+if __name__ == '__main__':
+    for i in range(1,591):
+        get_info(i)
