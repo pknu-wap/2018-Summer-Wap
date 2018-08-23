@@ -21,7 +21,7 @@ while 1:
     except pymysql.err.OperationalError:
         print("user이름과 password를 확인하세요")
 
-def before_update():
+def it_before_update():
     curs = conn.cursor()
     sql = "select * from itcroll"
     curs.execute(sql)
@@ -33,7 +33,7 @@ def before_update():
     return bef_url
 
 
-def update_data():
+def it_update_data():
     itcae = requests.get("http://cms.pknu.ac.kr/itcae/view.do?no=9576").text
 
     itcae_table = bs(itcae, "html.parser")
@@ -83,7 +83,7 @@ def update_data():
             continue
 
 
-def after_update():
+def it_after_update():
     curs = conn.cursor()
     sql = "select * from itcroll"
     curs.execute(sql)

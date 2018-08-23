@@ -1,6 +1,6 @@
 import asyncio
 import discord
-import itit, pythonpro, resunsheep
+import crawldata
 import json
 from datetime import datetime
 
@@ -20,30 +20,30 @@ async def on_ready():
 
 async def send_notice():
     while 1:
-        before = itit.before_update()
-        itit.update_data()
-        after = itit.after_update()
+        before = crawldata.ce_before_update()
+        crawldata.ce_update_data()
+        after = crawldata.ce_after_update()
 
         await client.wait_until_ready()
-        await client.send_message(channel, f'현재시간 {datetime.now()}\n'+ 'IT공학과 공지사항 업데이트다링~\n' + itit.compare(before,after))
+        await client.send_message(channel, f'현재시간 {datetime.now()}\n'+ '컴퓨터공학과 공지사항 업데이트다링~\n' + crawldata.compare(before,after))
         await asyncio.sleep(7)
 
 
-        before = pythonpro.before_update()
-        pythonpro.update_data()
-        after = pythonpro.after_update()
+        before = crawldata.ocean_before_update()
+        crawldata.ocean_update_data()
+        after = crawldata.ocean_after_update()
 
         await client.wait_until_ready()
-        await client.send_message(channel, f'현재시간 {datetime.now()}\n'+ '컴퓨터공학과 공지사항 업데이트다링~\n' + pythonpro.compare(before,after))
+        await client.send_message(channel, f'현재시간 {datetime.now()}\n'+ 'IT공학과 공지사항 업데이트다링~\n' + crawldata.compare(before,after))
         await asyncio.sleep(7)
 
 
-        before = resunsheep.before_update()
-        resunsheep.update_data()
-        after = resunsheep.after_update()
+        before = crawldata.it_before_update()
+        crawldata.it_update_data()
+        after = crawldata.it_after_update()
 
         await client.wait_until_ready()
-        await client.send_message(channel, f'현재시간 {datetime.now()}\n'+ '해양학과 공지사항 업데이트다링~\n' + resunsheep.compare(before,after))
+        await client.send_message(channel, f'현재시간 {datetime.now()}\n'+ '해양학과 공지사항 업데이트다링~\n' + crawldata.compare(before,after))
         await asyncio.sleep(10)
 
 

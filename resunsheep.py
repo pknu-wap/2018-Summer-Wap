@@ -22,7 +22,7 @@ while 1:
         print("user이름과 password를 확인하세요")
 
 
-def before_update():
+def ocean_before_update():
     curs = conn.cursor()
     sql = "select * from cmscroll"
     curs.execute(sql)
@@ -33,7 +33,7 @@ def before_update():
 
     return bef_url
 
-def update_data():
+def ocean_update_data():
     cms = requests.get("http://cms.pknu.ac.kr/pkuocean/view.do?no=1253&pageIndex=1&view=list&sv=TITLE&sw=").text
 
     cms_table = bs(cms, "html.parser")
@@ -82,7 +82,7 @@ def update_data():
             continue
 
 
-def after_update():
+def ocean_after_update():
     curs = conn.cursor()
     sql = "select * from cmscroll"
     curs.execute(sql)
