@@ -227,7 +227,7 @@ def compare(bef_url,aft_url):
     if bef_url == aft_url:
         return '새로 추가된 내용이 없다링...\n' +'('+ bef_url+')'
     else:
-        return '공지사항이 추가되었다링 :).\n' +'('+ aft_url+')'
+        return '공지사항이 추가되었다링 :)\n' +'('+ aft_url+')'
 
 
 

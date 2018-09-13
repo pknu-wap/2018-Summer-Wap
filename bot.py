@@ -34,7 +34,7 @@ async def send_notice():
         after = crawldata.ocean_after_update()
 
         await client.wait_until_ready()
-        await client.send_message(channel, f'현재시간 {datetime.now()}\n'+ 'IT공학과 공지사항 업데이트다링~\n' + crawldata.compare(before,after))
+        await client.send_message(channel, f'현재시간 {datetime.now()}\n'+ '해양학과 공지사항 업데이트다링~\n' + crawldata.compare(before,after))
         await asyncio.sleep(7)
 
 
@@ -43,7 +43,7 @@ async def send_notice():
         after = crawldata.it_after_update()
 
         await client.wait_until_ready()
-        await client.send_message(channel, f'현재시간 {datetime.now()}\n'+ '해양학과 공지사항 업데이트다링~\n' + crawldata.compare(before,after))
+        await client.send_message(channel, f'현재시간 {datetime.now()}\n'+ 'IT공학과 공지사항 업데이트다링~\n' + crawldata.compare(before,after))
         await asyncio.sleep(10)
 
 
